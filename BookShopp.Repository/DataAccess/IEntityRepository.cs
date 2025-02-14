@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShopp.Domain.Abstraction;
+using System.Linq.Expressions;
+using System.Security.Principal;
 
-namespace BookShopp.Repository.DataAccess
+namespace BookShopp.Repository.DataAccess;
+public interface IEntityRepository<T> where T : class, IEntity, new()
 {
-    internal interface IEntityRepository
-    {
-    }
+    T Get(Expression<Func<T, bool>> filter = null);
+    List<T> GetList(Expression<Func<T, bool>> filter = null);
+    void Add(T entity);
+    void Edit(T entity);
+    void Delete(T entity);
 }

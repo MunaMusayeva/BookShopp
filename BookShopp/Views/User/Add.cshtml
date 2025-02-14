@@ -1,0 +1,37 @@
+﻿@model BookShopp.Models.UserViewModel
+
+
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<h2>Add User</h2>
+
+<form asp-action="Add" method="post">
+   
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="User.Name" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Surname</label>
+        <input asp-for="User.Surname" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gmail">Email</label>
+        <input asp-for="User.Gmail"  class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Age">Age</label>
+        <input asp-for="User.Age"  class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Picture">Profile Image URL</label>
+        <input asp-for="User.Picture" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -2,7 +2,82 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a asp-action="Index" asp-controller="User" class="text-decoration-none">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 custom-card-user">
+                    <img src="images/man.png" alt="User Icon" class="user-icon">
+                    <h3 class="mt-3 text-white fw-bold">Users</h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a asp-action="Index" asp-controller="User" class="text-decoration-none">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 custom-card-book">
+                    <img src="images/5078755.png" alt="User Icon" class="user-icon">
+                    <h3 class="mt-3 text-white fw-bold">Books</h3>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a asp-action="Index" asp-controller="User" class="text-decoration-none">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 custom-card-course">
+                    <img src="images/educational-video.png" alt="User Icon" class="user-icon">
+                    <h3 class="mt-3 text-white fw-bold">Courses</h3>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
+
+<style>
+    .custom-card-user {
+        background: linear-gradient(135deg, #1e90ff, #00c9a7);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        height: 620px;
+    }
+    .custom-card-book {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffa9c6, #ffdde1);
+
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        height: 620px;
+    }
+    .custom-card-course {
+       background: linear-gradient(135deg, #FFC107, #FFD700, #FFEA70, #FFFACD);
+
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        height: 620px;
+    }
+    .custom-card-user:hover {
+        transform: scale(1.07);
+        box-shadow: 0px 15px 30px rgba(30, 144, 255, 0.3);
+    }
+     .custom-card-book:hover {
+        transform: scale(1.07);
+        box-shadow: 0px 15px 30px rgba(30, 144, 255, 0.3);
+    }
+     .custom-card-course:hover {
+        transform: scale(1.07);
+        box-shadow: 0px 15px 30px rgba(30, 144, 255, 0.3);
+    }
+    .user-icon {
+        width: 180px;
+        height: 180px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+</style>

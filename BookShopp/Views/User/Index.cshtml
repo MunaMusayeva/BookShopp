@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookShopp.Domain.Entities.User>
+
+@{
+    ViewData["Title"] = "User";
+}
+<div class="container">
+        <h2 class="text-center mb-4 text-white">User List</h2>
+
+        <div class="row g-4">
+        @foreach (var item in Model)
+        {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card custom-card-user">
+                            <img src="@item.Picture" class="card-img-top img" alt="User Image">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                            @item.Name @item.Surname
+                                </h5>
+                                <p class="card-text"><strong>Age:</strong> @item.Age</p>
+                                <p class="card-text"><strong>Email:</strong> @item.Gmail</p>
+                                     <a asp-action="Update" asp-controller="User" class="btn btn-info del-btn">Edit</a>   
+                            </div>
+                        </div>
+                    </div>
+        }
+        </div>
+
+    </div>
+
+
+    <style>
+    .custom-card-user {
+        background: linear-gradient(135deg, #1e90ff, #00c9a7);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        height: 620px;
+    }
+    .custom-card-user:hover {
+        transform: scale(1.07);
+        box-shadow: 0px 15px 30px rgba(30, 144, 255, 0.3);
+    }
+    .img{
+         width: 250px;
+        height: 320px;
+    }
+    
+    
+    </style>
+

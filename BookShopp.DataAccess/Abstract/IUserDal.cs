@@ -1,5 +1,8 @@
-﻿namespace BookShopp.DataAccess.Abstract;
+﻿using BookShopp.Domain.Entities;
+using BookShopp.Repository.DataAccess;
 
-public interface IUserDal
+namespace BookShopp.DataAccess.Abstract;
+
+public interface IUserDal : IEntityRepository<User>
 {
 }

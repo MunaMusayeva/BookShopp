@@ -20,11 +20,11 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-action="Add" asp-controller="User" class="btn btn-success add-btn">Add</a>
+                    <a asp-action="Delete" asp-controller="User" class="btn btn-danger del-btn">Delete</a>
+                        <a asp-action="Update" asp-controller="User" class="btn btn-info del-btn">Edit</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>

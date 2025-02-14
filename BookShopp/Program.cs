@@ -1,7 +1,23 @@
+using BookShopp.Application.Abstract;
+using BookShopp.Application.Concrete;
+using BookShopp.DataAccess.Abstract;
+using BookShopp.DataAccess.Context;
+using BookShopp.DataAccess.Implementation;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserDal, EFUserDal>();
+builder.Services.AddDbContext<BookShopDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyConn"));
+});
+
 
 var app = builder.Build();
 
