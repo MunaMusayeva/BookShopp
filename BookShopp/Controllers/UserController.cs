@@ -43,22 +43,39 @@ public class UserController(IUserService userService) : Controller
         _userService.Delete(id);
         return RedirectToAction("Index");
     }
-
+    [HttpGet]
     public IActionResult Edit(int id)
     {
         var user = _userService.GetById(id);
-        if (user == null) return NotFound();
-        return View(user);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        var model = new UserViewModel
+        {
+            User = user
+        };
+
+        return View(model);
     }
 
     [HttpPost]
-    public IActionResult Edit(User user)
+    public IActionResult Edit(UserViewModel model)
     {
-        if (ModelState.IsValid)
+        var userInDb = _userService.GetById(model.User.Id);
+        if (userInDb == null)
         {
-            _userService.Edit(user);
-            return RedirectToAction("Index");
+            return NotFound();
         }
-        return View(user);
+
+        userInDb.Name = model.User.Name;
+        userInDb.Surname = model.User.Surname;
+        userInDb.Age = model.User.Age;
+        userInDb.Gmail = model.User.Gmail;
+        userInDb.Picture = model.User.Picture;
+
+        _userService.Edit(userInDb);
+        return RedirectToAction("Index");
     }
 }

@@ -1,0 +1,53 @@
+﻿@model BookShopp.Models.UserViewModel
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="form-container p-5 rounded-4 shadow-lg w-50" style="background-color: #f9f9f9; border: 1px solid #ddd;">
+        <h2 class="text-center mb-4 text-uppercase text-dark fw-bold" style="font-family: 'Poppins', sans-serif;">
+            <i class="fas fa-user-edit me-2"></i> Edit User
+        </h2>
+
+        <form asp-controller="User" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="User.Id"/>
+
+            <div class="mb-3">
+                <label asp-for="User.Name" class="form-label">Name</label>
+                <input asp-for="User.Name" class="form-control p-3" placeholder="Enter name" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="User.Surname" class="form-label">Surname</label>
+                <input asp-for="User.Surname" class="form-control p-3" placeholder="Enter surname" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="User.Age" class="form-label">Age</label>
+                <input asp-for="User.Age" type="number" class="form-control p-3" placeholder="Enter age" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="User.Gmail" class="form-label">Gmail</label>
+                <input asp-for="User.Gmail" type="email" class="form-control p-3" placeholder="Enter Gmail" />
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="User.Picture" class="form-label">Profile Picture Path</label>
+                <input asp-for="User.Picture" class="form-control p-3" placeholder="Enter profile picture path" />
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="@Url.Action("Index", "User")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    body{
+        background: linear-gradient(0deg, #1e90ff, #00c9a7);
+
+
+    }
+</style>
+
+
+
