@@ -1,29 +1,36 @@
 ﻿@model BookShopp.Models.BookViewModel
 
 @{
-    ViewData["Title"] = "Delete Book";
+    ViewData["Title"] = "Book";
 }
-<div class="container d-flex justify-content-center align-items-center">
-    <div class="p-5 rounded-4 shadow-lg w-50" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);">
-        <h2 class="text-center mb-4 text-uppercase text-white fw-bold" style="font-family: 'Poppins', sans-serif; letter-spacing: 3px;">
-            <i class="fas fa-user-times me-2"></i> Delete Book
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="p-5 rounded-4 shadow-lg text-center" style="background: #ff6699; width: 400px; border-radius: 20px;">
+        <h2 class="mb-4 text-white fw-bold" style="font-family: 'Poppins', sans-serif; letter-spacing: 3px;">
+            Delete Book
         </h2>
 
         <form asp-controller="Book" asp-action="Delete" method="post">
-            <div class="mb-4">
-                <label asp-for="Book.Id" class="form-label text-white">Course ID</label>
-                <input asp-for="Book.Id" name="id" class="form-control p-3 rounded-3 text-white bg-dark border-0 shadow-sm"
-                       style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);"
-                       placeholder="Enter book ID" />
+            <div class="mb-4 text-start">
+                <label asp-for="Book.Id" class="form-label text-white">Book ID</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background: #ff4d88; border: none;">
+                        <i class="fas fa-book text-white"></i>
+                    </span>
+                    <input asp-for="Book.Id" name="id" class="form-control p-3 rounded-3 text-white"
+                        style="background: #ff80b3; border: none;" placeholder="Enter book ID" />
+                </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-danger w-100 py-3 rounded-3 fw-bold text-uppercase"
-                        style="background: linear-gradient(135deg, #ff416c, #ff4b2b); border: none; box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3); transition: all 0.3s ease-in-out;"
-                        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(255, 65, 108, 0.5)';"
-                        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 65, 108, 0.3)';">
-                    <i class="fas fa-trash-alt me-2"></i> Delete Book
-                </button>
+            <button type="submit" class="btn w-100 py-3 rounded-3 fw-bold text-uppercase"
+                style="background: #ff3366; color: white; border: none; transition: 0.3s ease-in-out;"
+                onmouseover="this.style.background='#ff1a4d';"
+                onmouseout="this.style.background='#ff3366';">
+                Delete Book
+            </button>
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index", "Book") "  class="btn w-100 py-3 rounded-3 mt-5 fw-bold text-uppercase"  style="background: #ff3366; color: white; border: none; transition: 0.3s ease-in-out;"
+                onmouseover="this.style.background='#ff1a4d';"
+                onmouseout="this.style.background='#ff3366';">Cancel</a>
             </div>
         </form>
     </div>

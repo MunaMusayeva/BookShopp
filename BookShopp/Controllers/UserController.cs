@@ -9,7 +9,7 @@ public class UserController(IUserService userService) : Controller
 {
     private readonly IUserService _userService = userService;
 
-    public IActionResult Index(int page = 1)
+    public IActionResult Index()
     {
         var users = _userService.GetAll();
         return View(users);

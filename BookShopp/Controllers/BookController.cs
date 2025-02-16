@@ -10,7 +10,7 @@ namespace BookShopp.Controllers
     {
         private readonly IBookService _bookService = bookService;
 
-        public IActionResult Index(int page = 1)
+        public IActionResult Index()
         {
             var books = _bookService.GetAll();
             return View(books);
