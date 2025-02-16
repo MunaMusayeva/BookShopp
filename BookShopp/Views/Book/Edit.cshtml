@@ -1,0 +1,66 @@
+﻿@model BookShopp.Models.BookViewModel
+@{
+    ViewData["Title"] = "Book";
+}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="form-container p-5 rounded-4 shadow-lg w-50" style="background-color: #f9f9f9; border: 1px solid #ddd;">
+        <h2 class="text-center mb-4 text-uppercase text-dark fw-bold" style="font-family: 'Poppins', sans-serif;">
+            <i class="fas fa-user-edit me-2"></i> Edit Course
+        </h2>
+
+        <form asp-controller="Book" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Book.Id" />
+
+            <div class="mb-3">
+                <label asp-for="Book.Name" class="form-label">Name</label>
+                <input asp-for="Book.Name" class="form-control p-3" placeholder="Enter name" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.Author" class="form-label">Author</label>
+                <input asp-for="Book.Author" class="form-control p-3" placeholder="Enter Author" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.Genre" class="form-label">Genre</label>
+                <input asp-for="Book.Genre"  class="form-control p-3" placeholder="Enter Genre" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.Pages" class="form-label">Pages</label>
+                <input asp-for="Book.Pages"  class="form-control p-3" placeholder="Enter Pages" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.ReadCount" class="form-label">ReadCount</label>
+                <input asp-for="Book.ReadCount"  class="form-control p-3" placeholder="Enter ReadCount" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.Description" class="form-label">Description</label>
+                <input asp-for="Book.Description"  class="form-control p-3" placeholder="Enter Description" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Book.Price" class="form-label">Price</label>
+                <input asp-for="Book.Price"  class="form-control p-3" placeholder="Enter Price" />
+            </div>
+            <div class="mb-4">
+                <label asp-for="Book.Image" class="form-label">Profile Picture Path</label>
+                <input asp-for="Book.Image" class="form-control p-3" placeholder="Enter profile picture path" />
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="@Url.Action("Index", "Book")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    body {
+        background: linear-gradient(0deg, #ff758c, #ff7eb3, #ffa9c6, #ffdde1);
+    }
+</style>
+
+
+

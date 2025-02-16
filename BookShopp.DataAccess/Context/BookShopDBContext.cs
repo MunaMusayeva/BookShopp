@@ -7,8 +7,8 @@ namespace BookShopp.DataAccess.Context;
 public class BookShopDBContext:DbContext
 {
     public DbSet<User> Users { get; set; }
-    //public DbSet<Book> Books { get; set; }
-    //public DbSet<Course> Courses { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Course> Courses { get; set; }
 
     public BookShopDBContext()
     {

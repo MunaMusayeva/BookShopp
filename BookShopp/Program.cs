@@ -13,6 +13,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserDal, EFUserDal>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IBookDal, EFBookDal>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ICourseDal, EFCourseDal>();
 builder.Services.AddDbContext<BookShopDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConn"));
