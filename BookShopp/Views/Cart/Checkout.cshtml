@@ -1,0 +1,79 @@
+﻿@model BookShopp.Models.CartListViewModel
+
+<h2>Checkout</h2>
+
+@if (TempData["message"] != null)
+{
+        <div class="alert alert-info">
+        @TempData["message"]
+        </div>
+}
+
+<form asp-action="List" method="post">
+    <h4>Your Cart</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Cart.CartLines)
+            {
+                    <tr>
+                        <td>
+                        @if (item.Book != null)
+                        {
+                            @item.Book.Name
+                        }
+                        else if (item.Course != null)
+                        {
+                            @item.Course.Name
+                        }
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>
+                        @if (item.Book != null)
+                        {
+                            @item.Book.Price
+                        }
+                        else if (item.Course != null)
+                        {
+                            @item.Course.Price
+                        }
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total: $@Model.TotalAmount</h4>
+
+    <h5>Payment Information</h5>
+    <div class="form-group">
+        <label for="PaymentMethod">Select Payment Method</label>
+        <select name="PaymentMethod" class="form-control" required>
+            <option value="CreditCard">Credit Card</option>
+            <option value="PayPal">PayPal</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="CardNumber">Card Number</label>
+        <input type="number" name="CardNumber" class="form-control" placeholder="Enter your card number" required>
+    </div>
+
+    <div class="form-group">
+        <label for="ExpirationDate">Expiration Date</label>
+        <input type="text" type="number" name="ExpirationDate" class="form-control" placeholder="MM/YY" required>
+    </div>
+
+    <div class="form-group">
+        <label for="CVC">CVC</label>
+        <input type="text" name="CVC" type="number" class="form-control" placeholder="Enter CVC" required>
+    </div>
+
+    <button type="submit" asp-action="Order" class="btn btn-primary">Pay Now</button>
+</form>

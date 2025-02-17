@@ -6,14 +6,19 @@
 
             @foreach (var item in Model.Cart.CartLines)
             {
-                <li class="list-group-item">
-                    <a> @item.Book.Name <span class="badge bg-success p-2 rounded text-white">@item.Quantity</span> </a>
-                </li>
+                    <li class="list-group-item">
+                    @if (item.Book != null)
+                    {
+                                <a>@item.Book.Name <span class="badge bg-success p-2 rounded text-white">@item.Quantity</span></a>
+                    }
+                    else if (item.Course != null)
+                    {
+                                <a>@item.Course.Name <span class="badge bg-success p-2 rounded text-white">@item.Quantity</span></a>
+                    }
+                    </li>
             }
         </ul>
     </li>
-
-
 
     <li class="dropdown-divider"></li>
 
@@ -28,7 +33,4 @@
             </a>
         </div>
     </li>
-
-
-
 </ul>

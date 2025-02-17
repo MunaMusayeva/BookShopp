@@ -1,45 +1,100 @@
 ﻿using BookShopp.Application.Abstract;
+using BookShopp.Domain.Models;
 using BookShopp.Models;
 using BookShopp.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShopp.Controllers
+namespace BookShopp.Controllers;
+
+public class CartController : Controller
 {
-    public class CartController(IBookService bookService, ICartSessionService cartSessionService, ICartService cartService) : Controller
+    private readonly IBookService _bookService;
+    private readonly ICourseService _courseService;
+    private readonly ICartSessionService _cartSessionService;
+    private readonly ICartService _cartService;
+
+    public CartController(IBookService bookService, ICourseService courseService, ICartSessionService cartSessionService, ICartService cartService)
     {
-        private readonly IBookService _bookService = bookService;
-        private readonly ICartSessionService _cartSessionService = cartSessionService;
-        private readonly ICartService _cartService = cartService;
+        _bookService = bookService;
+        _courseService = courseService;
+        _cartSessionService = cartSessionService;
+        _cartService = cartService;
+    }
+    public IActionResult AddToCart(int id, string type)
+    {
+        var cart = _cartSessionService.GetCart();
 
-        public IActionResult AddToCart(int Id)
+        if (type == "book")
         {
-            var bookToBeAdded = _bookService.GetById(Id);
-            var cart = _cartSessionService.GetCart();
-
+            var bookToBeAdded = _bookService.GetById(id);
             _cartService.AddToCart(cart, bookToBeAdded);
-            _cartSessionService.SetCart(cart);
-            TempData["message"] = String.Format("Your book , {0} was added successfully to cart!", bookToBeAdded.Name);
-            return RedirectToAction("Index", "Book");
+            TempData["message"] = $"Your book '{bookToBeAdded.Name}' was added successfully to the cart!";
+        }
+        else if (type == "course")
+        {
+            var courseToBeAdded = _courseService.GetById(id);
+            _cartService.AddToCart(cart, courseToBeAdded);
+            TempData["message"] = $"Your course '{courseToBeAdded.Name}' was added successfully to the cart!";
         }
 
-        [HttpGet]
-        public IActionResult List()
+        _cartSessionService.SetCart(cart);
+        return RedirectToAction("Index", type == "book" ? "Book" : "Course");
+    }
+
+    public IActionResult Checkout()
+    {
+        var cart = _cartSessionService.GetCart();
+
+        if (cart.CartLines.Count == 0)
         {
-            var cart = _cartSessionService.GetCart();
-            var model = new CartListViewModel()
-            {
-                Cart = cart
-            };
-            return View(model);
+            TempData["message"] = "Your cart is empty.";
+            return RedirectToAction("Index"); 
         }
 
-        public IActionResult Remove(int bookId)
+        var model = new CartListViewModel
         {
-            var cart = _cartSessionService.GetCart();
-            _cartService.RemoveFromCart(cart, bookId);
-            _cartSessionService.SetCart(cart);
-            TempData.Add("message", "Your book deleted succesfully from cart");
-            return RedirectToAction("List");
+            Cart = cart,
+            TotalBooks = cart.CartLines.Count(cl => cl.Book != null),
+            TotalCourses = cart.CartLines.Count(cl => cl.Course != null),
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult Checkout(CartListViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            TempData["message"] = "Your payment was successful!";
+            _cartSessionService.SetCart(new Cart());
+            return RedirectToAction("OrderConfirmation");
         }
+
+        return View(model); 
+    }
+
+    [HttpGet]
+    public IActionResult List()
+    {
+        var cart = _cartSessionService.GetCart();
+        var model = new CartListViewModel()
+        {
+            Cart = cart
+        };
+        return View(model);
+    }
+
+    public IActionResult Order()
+    {
+        return View();
+    }
+    public IActionResult Remove(int bookId, int courseId)
+    {
+        var cart = _cartSessionService.GetCart();
+        _cartService.RemoveFromCart(cart, bookId, courseId);
+        _cartSessionService.SetCart(cart);
+        TempData["message"] = "Your item was successfully removed from the cart.";
+        return RedirectToAction("List");
     }
 }

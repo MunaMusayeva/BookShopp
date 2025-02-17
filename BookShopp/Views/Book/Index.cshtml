@@ -21,7 +21,7 @@
                         <p class="card-text"><strong>Pages:</strong> @item.Pages</p>
                         <p class="card-text"><strong>Description:</strong> @item.Description</p>
                         <p class="card-text"><strong>Genre:</strong> @item.Genre</p>
-                            <a asp-action="AddToCart" asp-route-id="@item.Id" asp-controller="Cart" class="up-btn">Add To Cart</a>
+                                <a asp-action="AddToCart" asp-route-id="@item.Id" asp-route-type="book" asp-controller="Cart" class="btn1">Add To Cart</a>
                         <a asp-action="Edit" asp-controller="Book" asp-route-id="@item.Id" class="btn1">Edit</a>
                     </div>
                 </div>

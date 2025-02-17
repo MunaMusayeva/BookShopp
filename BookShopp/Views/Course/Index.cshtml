@@ -21,7 +21,7 @@
                         <p class="card-text"><strong>Price:</strong> @item.Price</p>
                         <p class="card-text"><strong>Required Skills:</strong> @item.Required_Skills</p>
                         <p class="card-text"><strong>Duration:</strong> @item.Duration</p>
-                        
+                                <a asp-action="AddToCart" asp-route-id="@item.Id"  asp-route-type="course" asp-controller="Cart" class="btn1">Add To Cart</a>
                         <a asp-action="Edit" asp-controller="Course" asp-route-id="@item.Id" class="btn1">Edit</a>
                     </div>
                 </div>

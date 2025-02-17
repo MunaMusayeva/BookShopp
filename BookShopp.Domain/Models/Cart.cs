@@ -13,7 +13,7 @@ public class Cart
     {
         get
         {
-            return CartLines.Sum(c => (c.Book?.Price ?? 0) * c.Quantity);
+            return CartLines.Sum(c => (c.Book?.Price ?? 0) * c.Quantity) + CartLines.Sum(c => (c.Course?.Price ?? 0) * c.Quantity);
         }
     }
 }
